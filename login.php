@@ -1,9 +1,9 @@
 <?php 
     if(isset($_POST['logout'])) {
+        setcookie("muse", "", time()-3600);
         session_start();
         session_unset();
         session_destroy();
-        setcookie("muse", "", time()-3600);
     }
     session_start();
     $usr = @$_POST["usr"];
@@ -12,7 +12,8 @@
     if(isset($_SESSION["muse"])){
         header("Location: inicio.php");
     }
-    if(@$_COOKIE["muse"] && isset($_SESSION["muse"])){
+    if(@$_COOKIE["muse"]){
+        $_SESSION["muse"]=$_COOKIE["muse"];
         header("Location: inicio.php");
     }
     if($usr=="muse" && $pass=="muse"){
