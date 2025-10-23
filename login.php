@@ -9,6 +9,9 @@
     $usr = @$_POST["usr"];
     $pass = @$_POST["pass"];
     $recordar = @$_POST["recordar"];
+    if(isset($_SESSION["muse"])){
+        header("Location: inicio.php");
+    }
     if(@$_COOKIE["muse"] && isset($_SESSION["muse"])){
         header("Location: inicio.php");
     }
